@@ -1,12 +1,16 @@
-import { Input } from '@/components/ui/input'
 import { LucideIcon } from 'lucide-react'
-import React from 'react'
 
-export default function TrainningCardContentItem({Icon,placeholder}:{Icon: LucideIcon, placeholder: string}) {
+interface props {
+  Icon: LucideIcon, 
+  children?: React.ReactNode
+}
+
+export default function TrainningCardContentItem({Icon, children}:props) {
+
   return (
     <div className='flex gap-1 text-orange'>
       <Icon/>
-      <Input placeholder={placeholder} className='text-gray'/>
+      {children}
   </div>
   )
 }

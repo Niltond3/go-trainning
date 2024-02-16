@@ -5,6 +5,7 @@ import {Repeat1, Repeat2, Dumbbell, Gauge, Group, TimerReset, Edit } from 'lucid
 import TrainningCardContentItem from './TrainningCardContentItem'
 import { Button } from '@/components/ui/button'
 import {useSearchParams, useRouter, usePathname} from 'next/navigation'
+import { TrainningCard } from './'
 
 export default function TrainningCardRoot() {
   const searchParams = useSearchParams()
@@ -39,12 +40,24 @@ export default function TrainningCardRoot() {
         </Button>
       </CardHeader>
       <CardContent className='grid grid-cols-2 gap-1'>
-        <TrainningCardContentItem Icon={Repeat1} placeholder='Nº de séries'/>
-        <TrainningCardContentItem Icon={Repeat2} placeholder='Nº de reps'/>
-        <TrainningCardContentItem Icon={Dumbbell} placeholder='Peso'/>
-        <TrainningCardContentItem Icon={Gauge} placeholder='Técnica avançada'/>
-        <TrainningCardContentItem Icon={TimerReset} placeholder='Tempo de Descanso'/>
-        <TrainningCardContentItem Icon={Group} placeholder='Grupo muscular'/>
+        <TrainningCardContentItem Icon={Repeat1} >
+          <TrainningCard.Input placeholder='Nº de séries'></TrainningCard.Input>
+        </TrainningCardContentItem>
+        <TrainningCardContentItem Icon={Repeat2} >
+          <TrainningCard.Input placeholder='Nº de reps'></TrainningCard.Input>
+        </TrainningCardContentItem>
+        <TrainningCardContentItem Icon={Dumbbell} >
+          <TrainningCard.Input placeholder='Peso'></TrainningCard.Input>
+        </TrainningCardContentItem>
+        <TrainningCardContentItem Icon={Gauge} >
+          <TrainningCard.Input placeholder='Técnica avançada'></TrainningCard.Input>
+        </TrainningCardContentItem>
+        <TrainningCardContentItem Icon={TimerReset} >
+            <TrainningCard.Dialog></TrainningCard.Dialog>
+        </TrainningCardContentItem>
+        <TrainningCardContentItem Icon={Group} >
+          <TrainningCard.Input placeholder='Grupo muscular'></TrainningCard.Input>
+        </TrainningCardContentItem>
       </CardContent>
   </Card>
   )
