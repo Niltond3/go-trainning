@@ -27,7 +27,6 @@ export default function TrainningCardRoot() {
     searchParams.get('editTrainning') === 'y' 
     ? router.push(pathname + '?' + createQueryString('editTrainning', 'n')) 
     : router.push(pathname + '?' + createQueryString('editTrainning', 'y'))
-    
   }
 
   return (

@@ -10,7 +10,7 @@ const keys = [
   "3",
   "00",
   "0",
-  "reset",
+  "Backspace",
 ] as const;
 
 export type KeyType = typeof keys[number];

@@ -12,7 +12,7 @@ const KEY_VALUES: KeyType[] = [
   "9",
   "00",
   "0",
-  "reset",
+  "Backspace",
 ];
 
 export { KEY_VALUES };
