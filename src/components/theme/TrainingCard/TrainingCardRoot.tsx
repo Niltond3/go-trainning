@@ -4,6 +4,10 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Edit } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { Form } from '@/components/ui/form'
 
 export default function TrainingCardRoot({
   children,
@@ -24,6 +28,25 @@ export default function TrainingCardRoot({
     [searchParams],
   )
 
+  const formSchema = z.object({
+    setNumber: z.number().min(1).max(10),
+  })
+
+  // 1. Define your form.
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      setNumber: 1,
+    },
+  })
+
+  // 2. Define a submit handler.
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
+    console.log(values)
+  }
+
   const handleClick = () => {
     // <pathname>?editTraining=y | <pathname>?editTraining=n
     searchParams.get('editTraining') === 'y'
@@ -42,7 +65,13 @@ export default function TrainingCardRoot({
           <Edit className="h-6 w-6 rounded-full" />
         </Button>
       </CardHeader>
-      <CardContent className="grid grid-cols-2 gap-1">{children}</CardContent>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <CardContent className="grid grid-cols-2 gap-1">
+            {children}
+          </CardContent>
+        </form>
+      </Form>
     </Card>
   )
 }

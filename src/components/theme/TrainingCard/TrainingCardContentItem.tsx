@@ -1,4 +1,5 @@
 import { LucideIcon } from 'lucide-react'
+import { FormField, FormItem, FormLabel } from '@/components/ui/form'
 
 interface props {
   Icon: LucideIcon
@@ -7,9 +8,17 @@ interface props {
 
 export default function TrainingCardContentItem({ Icon, children }: props) {
   return (
-    <div className="flex gap-1 text-orange">
-      <Icon />
-      {children}
-    </div>
+    <FormField
+      control={}
+      name={}
+      render={() => (
+        <FormItem className="flex gap-1 text-orange">
+          <FormLabel>
+            <Icon />
+          </FormLabel>
+          {children}
+        </FormItem>
+      )}
+    />
   )
 }
