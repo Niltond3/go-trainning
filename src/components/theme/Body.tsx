@@ -6,7 +6,8 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '../ui/accordion'
+} from '@/components/ui/accordion'
+
 import {
   Repeat1,
   Repeat2,
@@ -16,7 +17,7 @@ import {
   TimerReset,
 } from 'lucide-react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Control, FieldValues, Form, useForm } from 'react-hook-form'
+import { Control, FieldValues, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { TrainingCard } from './TrainingCard/index'
 
@@ -50,53 +51,71 @@ export default function Body() {
         </AccordionTrigger>
         <AccordionContent>
           <TrainingCard.Root>
-            <TrainingCard.Content>
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)}>
-                  <TrainingCard.Item
-                    Icon={Repeat1}
-                    control={control}
-                    name="sets"
-                  >
-                    <TrainingCard.Input placeholder="Nº de séries"></TrainingCard.Input>
-                  </TrainingCard.Item>
-                  <TrainingCard.Item
-                    Icon={Repeat2}
-                    control={control}
-                    name="reps"
-                  >
-                    <TrainingCard.Input placeholder="Nº de reps"></TrainingCard.Input>
-                  </TrainingCard.Item>
-                  <TrainingCard.Item
-                    Icon={Dumbbell}
-                    control={control}
-                    name="weight"
-                  >
-                    <TrainingCard.Input placeholder="Peso"></TrainingCard.Input>
-                  </TrainingCard.Item>
-                  <TrainingCard.Item
-                    Icon={Gauge}
-                    control={control}
-                    name="advanced"
-                  >
-                    <TrainingCard.Input placeholder="Técnica avançada"></TrainingCard.Input>
-                  </TrainingCard.Item>
-                  <TrainingCard.Item
-                    Icon={TimerReset}
-                    control={control}
-                    name="timer"
-                  >
-                    <TrainingCard.Timer></TrainingCard.Timer>
-                  </TrainingCard.Item>
-                  <TrainingCard.Item
-                    Icon={Group}
-                    control={control}
-                    name="group"
-                  >
-                    <TrainingCard.Input placeholder="Grupo muscular"></TrainingCard.Input>
-                  </TrainingCard.Item>
-                </form>
-              </Form>
+            <TrainingCard.Content
+              form={form}
+              handleSubmit={form.handleSubmit(onSubmit)}
+            >
+              <TrainingCard.Item
+                Icon={Repeat1}
+                control={control}
+                name="sets"
+                render={(field) =>
+                  TrainingCard.Input({
+                    placeholder: 'Nº de séries',
+                    ...field,
+                  })
+                }
+              />
+              <TrainingCard.Item
+                Icon={Repeat2}
+                control={control}
+                name="reps"
+                render={(field) =>
+                  TrainingCard.Input({
+                    placeholder: 'Nº de reps',
+                    ...field,
+                  })
+                }
+              />
+              <TrainingCard.Item
+                Icon={Dumbbell}
+                control={control}
+                name="weight"
+                render={(field) =>
+                  TrainingCard.Input({
+                    placeholder: 'Peso',
+                    ...field,
+                  })
+                }
+              />
+              <TrainingCard.Item
+                Icon={Gauge}
+                control={control}
+                name="advanced"
+                render={(field) =>
+                  TrainingCard.Input({
+                    placeholder: 'Técnica avançada',
+                    ...field,
+                  })
+                }
+              ></TrainingCard.Item>
+              <TrainingCard.Item
+                Icon={TimerReset}
+                control={control}
+                name="timer"
+                render={(field) => TrainingCard.Timer({ ...field })}
+              />
+              <TrainingCard.Item
+                Icon={Group}
+                control={control}
+                name="group"
+                render={(field) =>
+                  TrainingCard.Input({
+                    placeholder: 'Grupo muscular',
+                    ...field,
+                  })
+                }
+              />
             </TrainingCard.Content>
           </TrainingCard.Root>
         </AccordionContent>

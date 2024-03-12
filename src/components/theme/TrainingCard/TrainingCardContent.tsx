@@ -1,13 +1,25 @@
 import { CardContent } from '@/components/ui/card'
+import { Form } from '@/components/ui/form'
 import React from 'react'
+import { FieldValues, UseFormReturn } from 'react-hook-form'
 
-type TrainingCardContentProps = {
+type TrainingCardContentProps<T extends FieldValues> = {
   children?: React.ReactNode
+  handleSubmit: React.FormEventHandler<HTMLFormElement> | undefined
+  form: UseFormReturn<T>
 }
-export default function TrainingCardContent({
+export default function TrainingCardContent<T extends FieldValues>({
   children,
-}: TrainingCardContentProps) {
+  handleSubmit,
+  form,
+}: TrainingCardContentProps<T>) {
   return (
-    <CardContent className="grid grid-cols-2 gap-1">{children}</CardContent>
+    <CardContent>
+      <Form {...form}>
+        <form className="grid grid-cols-2 gap-1" onSubmit={handleSubmit}>
+          {children}
+        </form>
+      </Form>
+    </CardContent>
   )
 }
