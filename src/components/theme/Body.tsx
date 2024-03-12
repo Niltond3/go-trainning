@@ -22,7 +22,12 @@ import { z } from 'zod'
 import { TrainingCard } from './TrainingCard/index'
 
 const formSchema = z.object({
-  setNumber: z.number().min(1).max(10),
+  sets: z.number().min(1).max(10),
+  reps: z.number().min(1).max(100),
+  weight: z.number().min(1),
+  advanced: z.string(),
+  timer: z.number().min(1).max(9999),
+  group: z.string().min(1),
 })
 
 export default function Body() {
@@ -31,9 +36,7 @@ export default function Body() {
   // 1. Define your form.
   const form = useForm<formType>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      setNumber: 1,
-    },
+    defaultValues: {},
   })
 
   // 2. Define a submit handler.

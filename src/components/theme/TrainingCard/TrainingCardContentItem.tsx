@@ -30,7 +30,7 @@ export default function TrainingCardContentItem({
       name={name}
       render={(field) => (
         <FormItem className="flex gap-1 text-orange">
-          <FormLabel>
+          <FormLabel className="flex items-center justify-items-center">
             <Icon />
           </FormLabel>
           {render(field)}

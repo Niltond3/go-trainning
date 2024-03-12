@@ -28,7 +28,7 @@ export default function TrainingCardTimer({ ...rest }) {
   return (
     <Dialog onOpenChange={() => erase()}>
       <DialogTrigger asChild>
-        <TrainingCardInput placeholder={timer} {...rest}></TrainingCardInput>
+        <TrainingCardInput value={timer} {...rest} />
       </DialogTrigger>
       <DialogContent
         className="border-none bg-background-md focus-visible:outline-none sm:max-w-[425px]"
