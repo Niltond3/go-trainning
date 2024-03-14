@@ -26,13 +26,13 @@ const formSchema = z.object({
   reps: z.number().min(1).max(100),
   weight: z.number().min(1),
   advanced: z.string(),
-  timer: z.number().min(1).max(9999),
+  timer: z.string().min(1).max(9999),
   group: z.string().min(1),
 })
 
-export default function Body() {
-  type formType = z.infer<typeof formSchema>
+type formType = z.infer<typeof formSchema>
 
+export default function Body() {
   // 1. Define your form.
   const form = useForm<formType>({
     resolver: zodResolver(formSchema),
@@ -62,62 +62,50 @@ export default function Body() {
                 Icon={Repeat1}
                 control={control}
                 name="sets"
-                render={(field) =>
-                  TrainingCard.Input({
-                    placeholder: 'Nº de séries',
-                    ...field,
-                  })
-                }
+                render={({ field }) => (
+                  <TrainingCard.Input placeholder="Nº de séries" {...field} />
+                )}
               />
               <TrainingCard.Item
                 Icon={Repeat2}
                 control={control}
                 name="reps"
-                render={(field) =>
-                  TrainingCard.Input({
-                    placeholder: 'Nº de reps',
-                    ...field,
-                  })
-                }
+                render={({ field }) => (
+                  <TrainingCard.Input placeholder="Nº de reps" {...field} />
+                )}
               />
               <TrainingCard.Item
                 Icon={Dumbbell}
                 control={control}
                 name="weight"
-                render={(field) =>
-                  TrainingCard.Input({
-                    placeholder: 'Peso',
-                    ...field,
-                  })
-                }
+                render={({ field }) => (
+                  <TrainingCard.Input placeholder="Peso" {...field} />
+                )}
               />
               <TrainingCard.Item
                 Icon={Gauge}
                 control={control}
                 name="advanced"
-                render={(field) =>
-                  TrainingCard.Input({
-                    placeholder: 'Técnica avançada',
-                    ...field,
-                  })
-                }
+                render={({ field }) => (
+                  <TrainingCard.Input
+                    placeholder="Técnica avançada"
+                    {...field}
+                  />
+                )}
               ></TrainingCard.Item>
               <TrainingCard.Item
                 Icon={TimerReset}
                 control={control}
                 name="timer"
-                render={(field) => TrainingCard.Timer({ ...field })}
+                render={({ field }) => <TrainingCard.Timer {...field} />}
               />
               <TrainingCard.Item
                 Icon={Group}
                 control={control}
                 name="group"
-                render={(field) =>
-                  TrainingCard.Input({
-                    placeholder: 'Grupo muscular',
-                    ...field,
-                  })
-                }
+                render={({ field }) => (
+                  <TrainingCard.Input placeholder="Grupo muscular" {...field} />
+                )}
               />
             </TrainingCard.Content>
           </TrainingCard.Root>
